@@ -1,0 +1,8 @@
+streamlit
+pandas
+plotly
+openai
+scikit-learn
+PyPDF2
+huggingface-hub
+# python-dotenv

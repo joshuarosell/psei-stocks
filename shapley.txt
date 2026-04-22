@@ -1,0 +1,71 @@
+This plot aggregates SHAP (SHapley Additive exPlanations) values across all samples and shows how much each feature contributes on average to the model’s predictions, separately for each class. Class 0 refers to Down, Class 1 for Flat, and Class 2 for Up. Higher bars mean greater overall influence on the model’s output.
+Key Takeaways
+1. Volume Is the Most Influential Feature
+•	volume has the highest mean SHAP value across all classes.
+•	Its impact is particularly strong for Class 1 (Flat) and Class 0 (Down), indicating: 
+o	Trading activity plays a dominant role in class separation.
+o	The model likely relies on liquidity or participation intensity to infer market movement/regime.
+✅ This aligns well with financial intuition: volume often confirms price action and momentum.
+2. Price-Based Features Dominate the Top Rankings
+Among the next most important features:
+•	close
+•	high
+•	low
+•	open
+These features:
+•	Contribute meaningfully across all three classes
+•	Suggest the model heavily uses raw OHLC price structure
+📌 Interpretation: The model is learning price-level and intraday range patterns, not just derived indicators.
+3. Technical Indicators Add Strong Complementary Signals
+Notable technical indicators:
+•	rsi
+•	macd_histogram
+•	macd
+•	signal_line
+•	ema_12, ema_26, sma_20
+Observations:
+•	RSI and MACD histogram are especially influential, ranking alongside price variables.
+•	Moving averages matter, but less than oscillators and momentum-based signals.
+📈 This indicates:
+•	Momentum and overbought/oversold dynamics are critical to the model’s decision-making.
+•	Trend smoothers help, but are secondary.
+4. Sentiment Features Are Meaningful
+Sentiment-related features:
+•	positive_sent
+•	neutral_sent
+•	negative_sent
+•	sent_score
+Insights:
+•	Positive sentiment has notably higher importance than negative or neutral.
+•	Sentiment contributes more strongly to Class 0 (Down) and Class 1 (Flat) than Class 2 (Up).
+🧠 Interpretation:
+•	The model uses sentiment as a confirmatory or conditional signal, not a primary driver.
+•	This is typical in financial prediction: sentiment enhances but rarely replaces price/volume data.
+5. Stock-Specific Encodings Have Minimal Impact
+Lowest-ranked features:
+•	stock_CNVGRG
+•	stock_AREIT
+•	stock_SCC
+•	stock_SMPH
+This suggests:
+•	The model is not memorizing individual stocks
+•	Predictions are driven more by market behavior patterns than stock identity
+✅ This is a sign for generalization, especially if the goal is index-level or cross-stock prediction.
+
+Class-Level Observations
+•	Class 2 (Up)
+Heavily influenced by:
+o	Volume
+o	Close
+o	RSI → Likely represents a strong or momentum-based market state.
+•	Class 1 (Flat)
+More sensitivity to:
+o	Volume
+o	Price movement
+o	Sentiment → May correspond to transitional or moderate conditions.
+•	Class 0 (Down)
+Strong reliance on:
+o	Price structure
+o	Sentiment → Possibly a bearish or low-momentum regime.
+Overall Interpretation
+The model relies primarily on volume and price behavior, reinforced by momentum indicators (RSI, MACD), with sentiment acting as a secondary signal, and minimal dependence on stock identity—indicating a robust, behavior-driven predictive structure.
