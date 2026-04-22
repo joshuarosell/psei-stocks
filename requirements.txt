@@ -5,4 +5,5 @@ openai
 scikit-learn
 PyPDF2
 huggingface-hub
+xgboost
 # python-dotenv
